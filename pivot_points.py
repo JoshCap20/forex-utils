@@ -65,7 +65,7 @@ def print_pivot_points(name: str, points: dict[str, Decimal]):
     """Print the calculated pivot points in a formatted manner."""
     print(f"\n{name} Pivot Points:")
     for key, value in points.items():
-        print(f"  {key}: {value:.2f}")
+        print(f"  {key}: {value:.7f}")
 
 def main():
     try:
@@ -73,14 +73,16 @@ def main():
         low = Decimal(input("Enter the low price: "))
         close = Decimal(input("Enter the close price: "))
         open_price = Decimal(input("Enter the open price: "))
-        
+
         print_pivot_points("Standard", calculate_standard_pivot(high, low, close))
         print_pivot_points("Fibonacci", calculate_fibonacci_pivot(high, low, close))
         print_pivot_points("Camarilla", calculate_camarilla_pivot(high, low, close))
         print_pivot_points("Woodie's", calculate_woodies_pivot(high, low, close))
         print_pivot_points("DeMark's", calculate_demarks_pivot(high, low, close, open_price))
+        print("\n\n")
     except InvalidOperation as e:
         print(f"Error: {e}\nPlease enter valid decimal numbers for high, low, close, and open prices.")
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
